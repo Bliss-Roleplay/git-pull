@@ -1,5 +1,5 @@
 import express from 'express';
-import { openedEvent, closedEvent, pingEvent, pushEvent } from './utils/events.js';
+import { pingEvent, pushEvent } from './utils/events.js';
 import { log } from './utils/utils.js';
 import { PORT } from './config.js';
 
