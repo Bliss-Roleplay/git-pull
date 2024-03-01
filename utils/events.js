@@ -21,11 +21,11 @@ async function pingEvent(data) {
 }
 
 function openedEvent(data) {
-    log(3, 'Received a ping event');
+    log(3, 'Received a opened event');
 }
 
 function closedEvent(data) {
-    log(3, 'Received a ping event');
+    log(3, 'Received a closed event');
 }
 
 function unhandledEvent(data) {
