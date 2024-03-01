@@ -17,6 +17,18 @@ app.post('/webhook', express.json({ type: 'application/json' }), (req, res) => {
         pingEvent(data);
     } else if (githubEvent === 'push') {
         pushEvent(data);
+    } else if (githubEvent === 'pull_request') {
+        log(2, `Pull Request: ${action}`, data);
+        if (action === 'opened') {
+            console.log('pr opened');
+        } else if (action === 'reopened') {
+            console.log('pr re-opened');
+        } else {
+            if (data.pull_request.merged) {
+                return console.log('pr merged');
+            }
+            console.log('pr closed');
+        }
     } else {
         log(2, `Unhandled event ${githubEvent} : ${action}`, data);
     }
