@@ -1,9 +1,11 @@
 import axios from 'axios';
 import { branchFromRef, getCommitId } from './git.js';
+import { SEND_WEBHOOKS, WEBHOOK_IMAGE, DISCORD_WEBHOOK } from '../config.js';
+import { log } from './utils.js';
 
 async function sendPulledWebhook(data) {
     try {
-        if (process.env.SEND_WEBHOOKS !== 'true') return console.log('Webhooks are disabled');
+        if (!SEND_WEBHOOKS) throw log(2, 'Webhooks are disabled');
         const { ref, commits, sender, repository, compare } = data;
         const commitLength = commits.length;
 
@@ -14,7 +16,7 @@ async function sendPulledWebhook(data) {
 
         const params = {
             username: 'Github Gilroy',
-            avatar_url: `https://avatars.githubusercontent.com/u/9919?s=280&v=4`,
+            avatar_url: WEBHOOK_IMAGE,
             embeds: [
                 {
                     author: { name: sender.login, icon_url: sender.avatar_url },
@@ -23,9 +25,9 @@ async function sendPulledWebhook(data) {
                 },
             ],
         };
-        // return await axios.post(process.env.DISCORD_WEBHOOK, params);
+        return await axios.post(DISCORD_WEBHOOK, params);
     } catch(e) {
-        console.error('Error sending webhook', e);
+        log(2, 'Error sending webhook', e);
     }
 }
 
