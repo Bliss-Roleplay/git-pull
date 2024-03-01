@@ -12,7 +12,7 @@ async function sendPulledWebhook(data) {
         let description = `**[[${repository.name}] ${commitLength} new commit${commitLength > 1 ? 's' : ''
             } pulled to \`${branchFromRef(ref)}\`](${compare})**\n\n`;
         commits.forEach((commit) => description += 
-            `[\`${getCommitId(commit)}\`](${commit.url}) ${commit.message.substr(0, commit.message.indexOf('\n'))} - ${commit.author.name}\n`);
+            `[\`${getCommitId(commit)}\`](${commit.url}) ${commit.message.substr(0, commit.message.indexOf('\n') > 0 ? commit.message.indexOf('\n') : commit.message.length)} - ${commit.author.name}\n`);
 
         const params = {
             username: WEBHOOK_USERNAME,
@@ -28,6 +28,14 @@ async function sendPulledWebhook(data) {
         return await axios.post(DISCORD_WEBHOOK, params);
     } catch(e) {
         log(2, 'Error sending webhook', e);
+    }
+}
+
+async function sendErrorWebhook(data) {
+    try {
+
+    } catch(e) {
+        log(3, 'Error sending error webhook', e);
     }
 }
 
