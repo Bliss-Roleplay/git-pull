@@ -18,7 +18,7 @@ app.post('/webhook', express.json({ type: 'application/json' }), (req, res) => {
     } else if (githubEvent === 'push') {
         pushEvent(data);
     } else {
-        log(2, `Unhandled event ${githubEvent}`);
+        log(2, `Unhandled event ${githubEvent} : ${action}`, data);
     }
 });
 
