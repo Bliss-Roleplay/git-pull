@@ -67,7 +67,7 @@ const getCurrentBranch = async (repo, branch) => {
 
 const getGit = (repo, branch) => {
     try {
-        if (!repo || !branch || !repos[repo] || !repos[repo][branch]) { throw new Error(`Invalid branch/repo: '${repo}/${branch}'`); }
+        if (!repos?.[repo]?.[branch]) { throw new Error(`Invalid branch/repo: '${repo}/${branch}'`); }
         return repos[repo][branch];
     } catch (error) {
         log(2, 'Error getting git', error);
