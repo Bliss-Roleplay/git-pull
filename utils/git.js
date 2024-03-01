@@ -25,7 +25,7 @@ const repos = {
         // main: simpleGit({ ...options, baseDir: GIT_MAPS_MAIN_DIR }),
     },
     'bcrp-clothing': {
-        development: simpleGit({ ...options, baseDir: GIT_CLOTH_DEV_DIR }),
+        // development: simpleGit({ ...options, baseDir: GIT_CLOTH_DEV_DIR }),
         // main: simpleGit({ ...options, baseDir: GIT_CLOTH_MAIN_DIR }),
     },
     'bcrp-panel': {
@@ -57,7 +57,6 @@ const getCurrentBranch = async (repo, branch) => {
     try {
         const git = getGit(repo, branch);
         const status = await git.status(['-s']);
-        log(3, 'Current branch:', status.current);
         return status.current;
     } catch (error) {
         log(2, 'Error getting current branch', error);
