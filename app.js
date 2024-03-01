@@ -14,10 +14,10 @@ app.post('/webhook', express.json({ type: 'application/json' }), (req, res) => {
     const githubEvent = req.headers['x-github-event'];
     const data = req.body;
     const action = data.action;
-    log(3, 'Webhook received', githubEvent, action)
+    log(3, 'Webhook received', githubEvent);
     
     if (githubEvent === 'ping') {
-        pingEvent(data)
+        pingEvent(data);
     } else if (githubEvent === 'push') {
         pushEvent(data);
     } else {
