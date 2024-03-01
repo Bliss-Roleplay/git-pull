@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { branchFromRef, getCommitId } from './git.js';
-import { SEND_WEBHOOKS, WEBHOOK_IMAGE, DISCORD_WEBHOOK } from '../config.js';
+import { SEND_WEBHOOKS, WEBHOOK_IMAGE, DISCORD_WEBHOOK, WEBHOOK_USERNAME } from '../config.js';
 import { log } from './utils.js';
 
 async function sendPulledWebhook(data) {
@@ -15,7 +15,7 @@ async function sendPulledWebhook(data) {
             `[\`${getCommitId(commit)}\`](${commit.url}) ${commit.message.substr(0, commit.message.indexOf('\n'))} - ${commit.author.name}\n`);
 
         const params = {
-            username: 'Github Gilroy',
+            username: WEBHOOK_USERNAME,
             avatar_url: WEBHOOK_IMAGE,
             embeds: [
                 {
