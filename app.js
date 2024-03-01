@@ -18,7 +18,7 @@ app.post('/webhook', express.json({ type: 'application/json' }), (req, res) => {
     } else if (githubEvent === 'push') {
         pushEvent(data);
     } else if (githubEvent === 'pull_request') {
-        log(2, `Pull Request: ${action}`, data);
+        log(5, `Pull Request: ${action}`, data);
         if (action === 'opened') {
             console.log('pr opened');
         } else if (action === 'reopened') {
