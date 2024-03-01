@@ -1,9 +1,7 @@
-import { config } from 'dotenv';
-config();
+import { LOG_LEVEL } from '../config.js';
 
 function log(level, ...args) {
-    console.log('log event', level, +process.env.LOG_LEVEL, level <= +process.env.LOG_LEVEL);
-    if (level <= +process.env.LOG_LEVEL) {
+    if (level <= LOG_LEVEL) {
         if (level === 4) {
             return console.log('[DEBUG]', ...args); 
         }

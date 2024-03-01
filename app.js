@@ -1,10 +1,7 @@
 import express from 'express';
-import { config } from 'dotenv';
 import { openedEvent, closedEvent, pingEvent, pushEvent } from './utils/events.js';
 import { log } from './utils/utils.js';
 import { PORT } from './config.js';
-
-config();
 
 const app = express();
 

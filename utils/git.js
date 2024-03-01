@@ -1,13 +1,9 @@
 import { simpleGit } from 'simple-git';
 import { log } from './utils.js';
-
-
 import { 
-    GIT_DEV_DIR, GIT_MAIN_DIR, 
-    GIT_VEH_DEV_DIR, GIT_MAPS_DEV_DIR, 
-    GIT_VEH_MAIN_DIR, GIT_MAPS_MAIN_DIR, 
-    GIT_CLOTH_DEV_DIR, GIT_CLOTH_MAIN_DIR,
-    GIT_PANEL_DIR, GIT_BOT_DIR,
+    GIT_DEV_DIR, GIT_MAIN_DIR, GIT_VEH_DEV_DIR, 
+    GIT_MAPS_DEV_DIR, GIT_VEH_MAIN_DIR, GIT_MAPS_MAIN_DIR, 
+    GIT_CLOTH_DEV_DIR, GIT_CLOTH_MAIN_DIR, GIT_PANEL_DIR, GIT_BOT_DIR,
 } from '../config.js';
 
 const options = {
@@ -18,10 +14,17 @@ const options = {
 
 const repos = {
     development: simpleGit({ ...options, baseDir: GIT_DEV_DIR }),
-    // main: simpleGit({ ...options, baseDir: process.env.GIT_MAIN_DIR }),
-    //['bcrp-vehicles']: simpleGit({ ...options, baseDir: process.env.GIT_VEH_DIR }),
-    //['bcrp-maps']: simpleGit({ ...options, baseDir: process.env.GIT_MAPS_DIR }),
-    //['bcrp-clothing']: simpleGit({ ...options, baseDir: process.env.GIT_CLOTH_DIR }),
+    //['bcrp-vehicles']: simpleGit({ ...options, baseDir: GIT_VEH_DEV_DIR }),
+    //['bcrp-maps']: simpleGit({ ...options, baseDir: GIT_MAPS_DEV_DIR }),
+    //['bcrp-clothing']: simpleGit({ ...options, baseDir: GIT_CLOTH_DEV_DIR }),
+    
+    // main: simpleGit({ ...options, baseDir: GIT_MAIN_DIR }),
+    //['bcrp-vehicles']: simpleGit({ ...options, baseDir: GIT_VEH_MAIN_DIR }),
+    //['bcrp-maps']: simpleGit({ ...options, baseDir: GIT_MAPS_MAIN_DIR }),
+    //['bcrp-clothing']: simpleGit({ ...options, baseDir: GIT_CLOTH_MAIN_DIR }),
+    
+    //['bcrp-panel']: simpleGit({ ...options, baseDir: GIT_PANEL_DIR }),
+    //gilroyv4: simpleGit({ ...options, baseDir: GIT_BOT_DIR }),
 };
 
 const pull = async (branch) => {
