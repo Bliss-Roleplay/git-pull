@@ -2,8 +2,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const LOG_LEVEL = 4;
-const PORT = 3096;
-const SEND_WEBHOOKS = true;
+const PORT = 3069;
+const SEND_WEBHOOKS = false;
+const WEBHOOK_IMAGE = `https://avatars.githubusercontent.com/u/9919?s=280&v=4`;
 
 const {
     DISCORD_WEBHOOK,
@@ -33,6 +34,7 @@ export {
     LOG_LEVEL,
     PORT,
     SEND_WEBHOOKS,
+    WEBHOOK_IMAGE,
 
     BRANCH_MAP,
 
