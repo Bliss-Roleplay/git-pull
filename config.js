@@ -11,6 +11,14 @@ const {
     DISCORD_WEBHOOK,
     GIT_DEV_DIR,
     GIT_MAIN_DIR,
+    GIT_VEH_DEV_DIR,
+    GIT_VEH_MAIN_DIR,
+    GIT_MAPS_DEV_DIR,
+    GIT_MAPS_MAIN_DIR,
+    GIT_CLOTH_DEV_DIR,
+    GIT_CLOTH_MAIN_DIR,
+    GIT_PANEL_DIR,
+    GIT_BOT_DIR,
 } = process.env;
 
 export {
@@ -33,4 +41,4 @@ export {
 
     GIT_PANEL_DIR,
     GIT_BOT_DIR,
-}
+};

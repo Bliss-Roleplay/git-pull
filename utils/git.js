@@ -1,6 +1,9 @@
 import { simpleGit } from 'simple-git';
 import { log } from './utils.js';
-import { GIT_DEV_DIR, GIT_MAIN_DIR } from '../config.js';
+import { 
+    GIT_DEV_DIR, GIT_MAIN_DIR, GIT_VEH_DEV_DIR,
+    GIT_VEH_MAIN_DIR, GIT_MAPS_DEV_DIR, GIT_MAPS_MAIN_DIR,
+    GIT_CLOTH_DEV_DIR, GIT_CLOTH_MAIN_DIR, GIT_PANEL_DIR, GIT_BOT_DIR } from '../config.js';
 
 const options = {
     binary: 'git',
