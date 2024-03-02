@@ -58,6 +58,7 @@ const pull = async (repo, branch) => {
 const getCurrentBranch = async (repo, branch) => {
     try {
         const git = getGit(repo, branch);
+        if (!git) throw new Error('Unable to get GIT branch.');
         const status = await git.status(['-s']);
         return status.current;
     } catch (error) {
@@ -71,6 +72,7 @@ const getGit = (repo, branch) => {
         return repos[repo][branch];
     } catch (error) {
         log(2, 'Error getting git', error);
+        return null;
     }
 };
 
