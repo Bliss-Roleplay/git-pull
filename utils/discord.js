@@ -31,12 +31,27 @@ async function sendPulledWebhook(data) {
     }
 }
 
-async function sendErrorWebhook(data) {
+async function sendErrorWebhook(error) {
     try {
+        if (!SEND_WEBHOOKS) return log(2, 'Webhooks are disabled');
 
+        const description = `**Error**\n\n${error.message || error}`;
+
+        const params = {
+            username: WEBHOOK_USERNAME,
+            avatar_url: WEBHOOK_IMAGE,
+            embeds: [
+                {
+                    author: { name: 'BCRP-Pull Error' },
+                    color: 15258703,
+                    description,
+                },
+            ],
+        };
+        return await axios.post(DISCORD_WEBHOOK, params);
     } catch(e) {
         log(3, 'Error sending error webhook', e);
     }
 }
 
-export { sendPulledWebhook };
+export { sendPulledWebhook, sendErrorWebhook };

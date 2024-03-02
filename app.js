@@ -2,6 +2,7 @@ import express from 'express';
 import { pingEvent, pushEvent } from './utils/events.js';
 import { log, verify } from './utils/utils.js';
 import { PORT } from './config.js';
+import { sendErrorWebhook } from './utils/discord.js';
 
 const app = express();
 
@@ -36,7 +37,8 @@ app.post('/webhook', express.json({ type: 'application/json' }), async (req, res
             log(2, `Unhandled event ${githubEvent} : ${action}`, data);
         }
     } catch (error) {
-        console.error(error)
+        sendErrorWebhook(error);
+        console.error(error);
     }
 });
 

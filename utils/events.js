@@ -1,4 +1,4 @@
-import { sendPulledWebhook } from './discord.js';
+import { sendPulledWebhook, sendErrorWebhook } from './discord.js';
 import { pull, branchFromRef } from './git.js';
 import { log } from './utils.js';
 
@@ -10,6 +10,7 @@ async function pushEvent({ ref, repository, ...rest }) {
         log(2, `Successfully pulled branch '${branch}'!`);
         sendPulledWebhook({ ref, repository, ...rest }, 'push');
     } else {
+        sendErrorWebhook(new Error('There was an error pulling from git!'));
         log(2, 'There was an error pulling from git!');
     }
     log(4, 'Received a push event');
