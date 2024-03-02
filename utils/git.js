@@ -52,7 +52,7 @@ const pull = async (repo, branch) => {
         data.success = true;
     } catch (error) {
         data.error = error;
-        log(2, 'Error pulling from git', error);
+        log(2, 'Error pulling from git', error.message ? error.message : error);
     }
     return data;
 };
@@ -64,7 +64,7 @@ const getCurrentBranch = async (repo, branch) => {
         const status = await git.status(['-s']);
         return status.current;
     } catch (error) {
-        log(2, 'Error getting current branch', error);
+        log(2, 'Error getting current branch', error.message ? error.message : error);
         return null;
     }
 };
@@ -74,7 +74,7 @@ const getGit = (repo, branch) => {
         if (!repos?.[repo]?.[branch]) { throw new Error(`Invalid branch/repo: '${repo}/${branch}'`); }
         return repos[repo][branch];
     } catch (error) {
-        log(2, 'Error getting git', error);
+        log(2, 'Error getting git', error.message ? error.message : error);
         return null;
     }
 };
