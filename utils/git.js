@@ -39,6 +39,7 @@ const repos = {
 const pull = async (repo, branch) => {
     const data = {
         success: false,
+        error: null,
         checkout: null,
         pull: null,
     };
@@ -48,6 +49,7 @@ const pull = async (repo, branch) => {
         data.pull = await git.pull();
         data.success = true;
     } catch (error) {
+        data.error = error;
         log(2, 'Error pulling from git', error);
     }
     return data;
