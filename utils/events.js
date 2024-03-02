@@ -1,20 +1,24 @@
 import { sendPulledWebhook, sendErrorWebhook } from './discord.js';
-import { pull, branchFromRef } from './git.js';
-import { log } from './utils.js';
+import { pull, branchFromRef, niceBranch } from './git.js';
+import { log, err } from './utils.js';
 
 async function pushEvent({ ref, repository, ...rest }) {
-    log(5, ref, repository);
+    log(4, 'Received a push event', ref);
+    log(5, repository);
     const branch = branchFromRef(ref);
-    const pullLog = await pull(repository.name, branch);
-    if (pullLog.success) {
-        log(2, `Successfully pulled branch '${branch}'!`);
-        sendPulledWebhook({ ref, repository, ...rest }, 'push');
-    } else {
-        const { error } = pullLog;
-        sendErrorWebhook(new Error(`There was an error pulling \`${repository.name} / ${branch}\` git!\n\n${error.message ? error.message : error}`));
-        log(2, 'There was an error pulling from git!');
+    try {
+        const pullLog = await pull(repository.name, branch);
+        if (pullLog.success) {
+            log(2, `Successfully pulled branch '${branch}'!`);
+            sendPulledWebhook({ ref, repository, ...rest }, 'push');
+        } else {
+            const { error } = pullLog;
+            throw error;
+        }
+    } catch(error) {
+        log(2, 'There was an error pulling from git:', err(error));
+        sendErrorWebhook(new Error(`There was an error pulling ${niceBranch(repository.name, branch)}!\n\n${err(error)}`));
     }
-    log(4, 'Received a push event');
 }
 
 async function pingEvent(data) {

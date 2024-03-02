@@ -28,4 +28,6 @@ async function verify(req, res) {
     return verify;
 };
 
-export { log, verifySignature, verify };
+const err = error => error?.message || error;
+
+export { log, err, verifySignature, verify };
