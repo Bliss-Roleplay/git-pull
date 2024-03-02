@@ -14,15 +14,15 @@ const options = {
 const repos = {
     'bcrp-main': {
         development: simpleGit({ ...options, baseDir: GIT_DEV_DIR }),
-        main: simpleGit({ ...options, baseDir: GIT_MAIN_DIR }),
+        // main: simpleGit({ ...options, baseDir: GIT_MAIN_DIR }),
     },
     'bcrp-vehicles': {
         development: simpleGit({ ...options, baseDir: GIT_VEH_DEV_DIR }),
-        main: simpleGit({ ...options, baseDir: GIT_VEH_MAIN_DIR }),
+        // main: simpleGit({ ...options, baseDir: GIT_VEH_MAIN_DIR }),
     },
     'bcrp-maps': {
         development: simpleGit({ ...options, baseDir: GIT_MAPS_DEV_DIR }),
-        main: simpleGit({ ...options, baseDir: GIT_MAPS_MAIN_DIR }),
+        // main: simpleGit({ ...options, baseDir: GIT_MAPS_MAIN_DIR }),
     },
     'bcrp-clothing': {
         // development: simpleGit({ ...options, baseDir: GIT_CLOTH_DEV_DIR }),
@@ -45,7 +45,6 @@ const pull = async (repo, branch) => {
     };
     try {
         const git = getGit(repo, branch);
-        if (!git) throw new Error(`Unable to get GIT branch. ${niceBranch(repo, branch)} has not yet been configured.`);
         const curBranch = await getCurrentBranch(repo, branch);
         if (!curBranch) throw new Error('Unable to get GIT branch.');
         if (curBranch !== branch) data.checkout = await git.checkout(branch);
@@ -71,7 +70,7 @@ const getCurrentBranch = async (repo, branch) => {
 
 const getGit = (repo, branch) => {
     try {
-        if (!repos?.[repo]?.[branch]) { throw new Error(`Invalid branch/repo: ${niceBranch(repo, branch)}`); }
+        if (!repos?.[repo]?.[branch]) { throw new Error(`Unable to get GIT branch. ${niceBranch(repo, branch)} has not yet been configured.`); }
         return repos[repo][branch];
     } catch (error) {
         log(5, 'Error getting git:', err(error));
