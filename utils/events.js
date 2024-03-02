@@ -10,6 +10,7 @@ async function pushEvent({ ref, repository, ...rest }) {
         log(2, `Successfully pulled branch '${branch}'!`);
         sendPulledWebhook({ ref, repository, ...rest }, 'push');
     } else {
+        const { error } = pullLog;
         sendErrorWebhook(new Error(`There was an error pulling from git!\n\n${error.message ? error.message : error}`));
         log(2, 'There was an error pulling from git!');
     }
