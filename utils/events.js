@@ -17,7 +17,7 @@ async function pushEvent({ ref, repository, ...rest }) {
         }
     } catch(error) {
         log(2, 'There was an error pulling from git:', err(error));
-        sendErrorWebhook(new Error(`There was an error pulling ${niceBranch(repository.name, branch)}!\n\n${err(error)}`));
+        sendErrorWebhook(new Error(`There was an error pulling repo!\n\n${err(error)}`));
     }
 }
 
