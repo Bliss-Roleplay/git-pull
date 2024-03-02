@@ -45,7 +45,9 @@ const pull = async (repo, branch) => {
     };
     try {
         const git = getGit(repo, branch);
-        if (await getCurrentBranch(repo, branch) !== branch) data.checkout = await git.checkout(branch);
+        const curBranch = await getCurrentBranch(repo, branch);
+        if (!curBranch) throw new Error('Unable to get GIT branch.')
+        if (curBranch !== branch) data.checkout = await git.checkout(branch);
         data.pull = await git.pull();
         data.success = true;
     } catch (error) {
@@ -63,6 +65,7 @@ const getCurrentBranch = async (repo, branch) => {
         return status.current;
     } catch (error) {
         log(2, 'Error getting current branch', error);
+        return null;
     }
 };
 
