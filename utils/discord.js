@@ -10,7 +10,7 @@ async function sendPulledWebhook(data) {
         const commitLength = commits.length;
 
         let description = `**[[${repository.name}] ${commitLength} new commit${commitLength > 1 ? 's' : ''
-            } pulled to \`${LOCATION}\` / \`${branchFromRef(ref)}\`](${compare})**\n\n`;
+            } pulled to \`${LOCATION}\` - ${repository.name}/\`${branchFromRef(ref)}\`](${compare})**\n\n`;
         commits.forEach((commit) => description += 
             `[\`${getCommitId(commit)}\`](${commit.url}) ${commit.message.substr(0, commit.message.indexOf('\n') > 0 ? commit.message.indexOf('\n') : commit.message.length)} - ${commit.author.name}\n`);
 
