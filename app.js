@@ -1,10 +1,14 @@
 import express from 'express';
+import bodyParser from 'body-parser';
 import { pingEvent, pushEvent } from './utils/events.js';
 import { log, verify } from './utils/utils.js';
 import { PORT } from './config.js';
 import { sendErrorWebhook } from './utils/discord.js';
 
 const app = express();
+
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 app.post('/webhook', express.json({ type: 'application/json' }), async (req, res) => {
     try {
