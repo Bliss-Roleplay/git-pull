@@ -12,28 +12,28 @@ const options = {
 };
 
 const repos = {
-    'bcrp-main': {
-        development: simpleGit({ ...options, baseDir: GIT_DEV_DIR }),
-        // main: simpleGit({ ...options, baseDir: GIT_MAIN_DIR }),
+    'Bliss-RP': {
+        // development: simpleGit({ ...options, baseDir: GIT_DEV_DIR }),
+        main: simpleGit({ ...options, baseDir: GIT_MAIN_DIR }),
     },
-    'bcrp-vehicles': {
-        development: simpleGit({ ...options, baseDir: GIT_VEH_DEV_DIR }),
-        // main: simpleGit({ ...options, baseDir: GIT_VEH_MAIN_DIR }),
+    // 'bcrp-vehicles': {
+    //     development: simpleGit({ ...options, baseDir: GIT_VEH_DEV_DIR }),
+    //     // main: simpleGit({ ...options, baseDir: GIT_VEH_MAIN_DIR }),
+    // },
+    'Bliss-Maps': {
+        // development: simpleGit({ ...options, baseDir: GIT_MAPS_DEV_DIR }),
+        main: simpleGit({ ...options, baseDir: GIT_MAPS_MAIN_DIR }),
     },
-    'bcrp-maps': {
-        development: simpleGit({ ...options, baseDir: GIT_MAPS_DEV_DIR }),
-        // main: simpleGit({ ...options, baseDir: GIT_MAPS_MAIN_DIR }),
-    },
-    'bcrp-clothing': {
-        // development: simpleGit({ ...options, baseDir: GIT_CLOTH_DEV_DIR }),
-        // main: simpleGit({ ...options, baseDir: GIT_CLOTH_MAIN_DIR }),
-    },
-    'bcrp-panel': {
-        main: simpleGit({ ...options, baseDir: GIT_PANEL_DIR }),
-    },
-    'bcrp-bot': {
-        main: simpleGit({ ...options, baseDir: GIT_BOT_DIR }),
-    },
+    // 'bcrp-clothing': {
+    //     // development: simpleGit({ ...options, baseDir: GIT_CLOTH_DEV_DIR }),
+    //     // main: simpleGit({ ...options, baseDir: GIT_CLOTH_MAIN_DIR }),
+    // },
+    // 'bcrp-panel': {
+    //     main: simpleGit({ ...options, baseDir: GIT_PANEL_DIR }),
+    // },
+    // 'bcrp-bot': {
+    //     main: simpleGit({ ...options, baseDir: GIT_BOT_DIR }),
+    // },
 };
 
 const pull = async (repo, branch) => {

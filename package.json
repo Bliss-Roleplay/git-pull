@@ -6,7 +6,9 @@
 	"license": "MIT",
 	"type": "module",
 	"scripts": {
-		"start": "node app.js"
+		"start": "smee -u https://smee.io/ENTJq6czHIk8n7Hs --target http://127.0.0.1:3069/webhook && node app.js",
+		"smee": "smee -u https://smee.io/ENTJq6czHIk8n7Hs --target http://127.0.0.1:3069/webhook",
+		"app": "node app.js"
 	},
 	"dependencies": {
 		"axios": "^1.6.7",

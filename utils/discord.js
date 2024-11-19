@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { branchFromRef, getCommitId } from './git.js';
-import { SEND_WEBHOOKS, WEBHOOK_IMAGE, DISCORD_WEBHOOK, WEBHOOK_USERNAME } from '../config.js';
+import { SEND_WEBHOOKS, WEBHOOK_IMAGE, DISCORD_WEBHOOK, WEBHOOK_USERNAME, LOCATION } from '../config.js';
 import { log } from './utils.js';
 
 async function sendPulledWebhook(data) {
